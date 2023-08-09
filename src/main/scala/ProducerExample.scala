@@ -7,14 +7,14 @@ object ProducerExample extends App {
   case class Order(id: Int, product: String, quantity: Int, price: Double)
 
   val props = new Properties()
-  val producer = new KafkaProducer[String, String](props)
-
   props.put("bootstrap.servers", "localhost:9092")
+
   props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
   props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
-  val TOPIC = "test_topic"
+  val producer = new KafkaProducer[String, String](props)
 
+  val TOPIC = "test_topic"
   implicit val write: Writes[Order] = Json.writes[Order]
 
   for (i <- 1 to 10) {
