@@ -1,0 +1,5 @@
+v1
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perLocation/location=Dubai/part-00000-08e5788a-489c-4474-8c11-f935cee511b3.c000.csv","size":21,"isDir":false,"modificationTime":1691999371428,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perLocation/location=London/part-00000-81e215e6-4e8e-497c-984a-4e640b227512.c000.csv","size":48,"isDir":false,"modificationTime":1691999371436,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perLocation/location=Portugal/part-00000-62f083c3-e6a6-4a55-9c1e-c1521bf5fcdf.c000.csv","size":22,"isDir":false,"modificationTime":1691999371444,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perLocation/location=Vietnam/part-00000-b3b7187d-d097-4681-9ec6-2d35ffe48f74.c000.csv","size":44,"isDir":false,"modificationTime":1691999371452,"blockReplication":1,"blockSize":33554432,"action":"add"}

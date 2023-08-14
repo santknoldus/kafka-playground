@@ -1,0 +1,4 @@
+v1
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perFirstName/first_name=David/part-00000-40440b27-146b-4061-96bb-91a5b992aa59.c000.csv","size":48,"isDir":false,"modificationTime":1691998510805,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perFirstName/first_name=Helen/part-00000-7ebe5414-0ae1-42d6-9e7f-ff053e3f3da9.c000.csv","size":23,"isDir":false,"modificationTime":1691998510817,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perFirstName/first_name=Ivy/part-00000-80cb447f-8534-45df-9a35-b2eeed006aac.c000.csv","size":53,"isDir":false,"modificationTime":1691998510829,"blockReplication":1,"blockSize":33554432,"action":"add"}

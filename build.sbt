@@ -11,5 +11,6 @@ lazy val root = (project in file("."))
 libraryDependencies ++= Seq(
   "org.apache.kafka" % "kafka-clients" % "3.4.0",
   "org.apache.spark" %% "spark-core" % "3.4.0",
-  "org.apache.spark" %% "spark-sql" % "3.4.0"
+  "org.apache.spark" %% "spark-sql" % "3.4.0",
+  "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.3.2"
 )

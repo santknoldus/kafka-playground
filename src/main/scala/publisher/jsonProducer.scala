@@ -22,33 +22,31 @@ object jsonProducer extends App {
   private val firstNames = List("Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Helen", "Ivy", "Jack")
   private val lastNames = List("Rajput", "Mishra", "Narayan", "Rastogi", "Kumar", "Gupta", "Rana", "Singh")
   private val locations = List("India", "Vietnam", "Spain", "Dubai", "London", "Barcelona", "Portugal")
-  private val onlineStatus = List("true", "false")
+  private val onlineStatus = List(true, false)
 
-  // Generating Data ----------------------------------------------------------------------------
+  // Generating Data and Sending JSON String as data ----------------------------------------------------------------------------
 
-  private val firstAName = firstNames(Random.nextInt(firstNames.length))
-  private val lastName = lastNames(Random.nextInt(lastNames.length))
-  private val location = locations(Random.nextInt(locations.length))
-  private val online = onlineStatus(Random.nextInt(onlineStatus.length))
-  private val followers = Random.nextInt(1000)
+  for (_ <- 1 to 10) {
+    val firstAName = firstNames(Random.nextInt(firstNames.length))
+    val lastName = lastNames(Random.nextInt(lastNames.length))
+    val location = locations(Random.nextInt(locations.length))
+    val online = onlineStatus(Random.nextInt(onlineStatus.length))
+    val followers = Random.nextInt(1000)
 
-  // Sending JSON String as data ----------------------------------------------------------------
+    val jsonString =
+      s"""
+         |{
+         |  "first_name" : "$firstAName",
+         |  "last_name" : "$lastName",
+         |  "location" : "$location",
+         |  "online" : $online,
+         |  "followers" : $followers
+         |}
+         |""".stripMargin
 
-  val jsonString =
-    s"""
-      |{
-      |  "first_name" : "$firstAName",
-      |  "last_name" : "$lastName",
-      |  "location" : "$location",
-      |  "online" : $online,
-      |  "followers" : $followers
-      |}
-      |""".stripMargin
-
-  val jsonMessage = new ProducerRecord[String, String](topic, jsonString)
-  producer.send(jsonMessage)
-
-  // --------------------------------------------------------------------------------------------
+    val jsonMessage = new ProducerRecord[String, String](topic, jsonString)
+    producer.send(jsonMessage)
+  }
 
   producer.close()
 }
