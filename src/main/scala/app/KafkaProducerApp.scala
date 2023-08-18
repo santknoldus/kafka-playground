@@ -22,17 +22,32 @@ object KafkaProducerApp extends App {
     input(randomNumber)
   }
 
+  private val listOfFirstName = List("Manish", "Sant", "Pradyuman", "Mohika", "Akhil", "Jitendar", "Tushar", "Ajit")
+  private val listOfLastName = List("Mishra", "Kumar", "Awana", "Sharma", "Dhiman", "Tiwari")
   private val listOfLocations = List("Ocean", "Hill", "River", "Railway", "Forest", "City", "Desert", "Mountain")
   private val listOfOnlineStatus = List(true, false)
   private val listOfFollowers = (550 to 50000).toList
 
-  private val isOnline = randomElement(listOfOnlineStatus)
-  private val location = randomElement(listOfLocations)
-  private val followerCount = randomElement(listOfFollowers)
+  for {
+    i <- 1 to 10
+    firstname = randomElement(listOfFirstName)
+    lastname = randomElement(listOfLastName)
+    isOnline = randomElement(listOfOnlineStatus)
+    location = randomElement(listOfLocations)
+    followerCount = randomElement(listOfFollowers)
 
-  private val publishData = s"""{"firstname":"Manish","lastname":"Mishra", "location":$location, "online":$isOnline, "followers":$followerCount}"""
-  private val record = new ProducerRecord(topic, "key", publishData)
-  producer.send(record)
+    publishData =
+      s"""{
+         |"id":$i,
+         |"firstname":"$firstname",
+         |"lastname":"$lastname",
+         |"location":"$location",
+         |"online":$isOnline,
+         |"followers":$followerCount
+         |}"""
+        .stripMargin
+    record = new ProducerRecord(topic, "key", publishData)
+  } yield producer.send(record)
 
   producer.close()
 }
