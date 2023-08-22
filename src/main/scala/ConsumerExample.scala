@@ -11,7 +11,7 @@ object ConsumerExample extends App {
   props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
 
   val consumer = new KafkaConsumer[String, String](props)
-  val TOPIC = "test_topic"
+  val TOPIC = "sample_topic"
 
   consumer.subscribe(java.util.Collections.singletonList(TOPIC))
 
@@ -21,7 +21,5 @@ object ConsumerExample extends App {
       println(s"Received order details: ${record.value()}")
     }
   }
-
   consumer.close()
-
 }

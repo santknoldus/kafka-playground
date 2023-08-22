@@ -1,0 +1,4 @@
+v1
+{"path":"file:///home/knoldus/learning/learningSpark/kafka-client/SavedData/id=1/part-00000-087bb307-500b-4977-a949-c42ed9d54cf4.c000.json","size":100,"isDir":false,"modificationTime":1692685738261,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/learning/learningSpark/kafka-client/SavedData/id=2/part-00000-cdf1d315-0880-42c9-9e41-0c3c4f65f9c6.c000.json","size":100,"isDir":false,"modificationTime":1692685738269,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///home/knoldus/learning/learningSpark/kafka-client/SavedData/id=5/part-00000-d8c4593f-1ec9-4fdc-9a25-acd00644e646.c000.json","size":101,"isDir":false,"modificationTime":1692685738281,"blockReplication":1,"blockSize":33554432,"action":"add"}
