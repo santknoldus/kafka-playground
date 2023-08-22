@@ -32,6 +32,7 @@ object jsonProducer extends App {
     val location = locations(Random.nextInt(locations.length))
     val online = onlineStatus(Random.nextInt(onlineStatus.length))
     val followers = Random.nextInt(1000)
+    val timestamp = System.currentTimeMillis()
 
     val jsonString =
       s"""
@@ -40,7 +41,8 @@ object jsonProducer extends App {
          |  "last_name" : "$lastName",
          |  "location" : "$location",
          |  "online" : $online,
-         |  "followers" : $followers
+         |  "followers" : $followers,
+         |  "timestamp" : $timestamp
          |}
          |""".stripMargin
 

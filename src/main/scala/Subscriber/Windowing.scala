@@ -3,15 +3,16 @@ package Subscriber
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 
-object SparkConsumer extends App {
+object Windowing extends App {
 
   val spark: SparkSession = SparkSession.builder()
-    .appName("KafkaJsonConsumer")
+    .appName("Windowing")
     .master("local[*]")
     .getOrCreate()
+
+  spark.sparkContext.setLogLevel("OFF")
 
   import spark.implicits._
 
@@ -43,28 +44,27 @@ object SparkConsumer extends App {
     .select("data.*")
 
   // Processing DataFrame
-  val filteringOnDF = kafkaDataFrame.filter("followers > 500")
+  val filteringOnDF = kafkaDataFrame.select("*").where(col("location") === "Dubai" || col("location") === "India")
 
-//  // Start the streaming query - Per First Name
-//  val query = filteringOnDF.writeStream
-//    .outputMode("append")
-//    .format("csv")
-//    .option("path", "/home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perFirstName")
-//    .option("checkpointLocation", "/home/knoldus/IdeaProjects/kafka-playground/src/main/checkpoints/perFirstName")
-//    .option("mode", "overwrite")
-//    .trigger(Trigger.ProcessingTime("10 seconds"))
-//    .partitionBy("first_name")
-//    .start()
+  // Tumbling Window
+  val tumblingWindowDF =
+    filteringOnDF
+      .withWatermark("timestamp", "10 minutes")
+      .groupBy(window(col("timestamp"), "10 minutes"), col("location"))
+      .agg(count("*").as("occurrence_count"))
 
-//  // Start the streaming query - Per Location
-  val query = filteringOnDF.writeStream
+  // Sliding Window
+  val slidingWindowDF =
+    filteringOnDF
+      .withWatermark("timestamp", "10 minutes")
+      .groupBy(window(col("timestamp"), "10 minutes", "5 minutes"), col("location"))
+      .agg(count("*").as("occurrence_count"))
+
+  //  // Start the streaming query
+  val query = slidingWindowDF.writeStream
     .outputMode("append")
-    .format("csv")
-    .option("path", "/home/knoldus/IdeaProjects/kafka-playground/src/main/resources/perLocation")
-    .option("checkpointLocation", "/home/knoldus/IdeaProjects/kafka-playground/src/main/checkpoints/perLocation")
-    .option("mode", "overwrite")
-    .trigger(Trigger.ProcessingTime("10 seconds"))
-    .partitionBy("location")
+    .format("console")
+    .option("truncate", "false")
     .start()
 
   // Wait for the query to terminate

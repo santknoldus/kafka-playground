@@ -14,3 +14,11 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % "3.4.0",
   "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.3.2"
 )
+
+// For Consuming Twitter Data
+libraryDependencies ++= Seq(
+  "org.twitter4j" % "twitter4j-core" % "4.1.2",
+  "org.twitter4j" % "twitter4j-stream" % "4.0.7",
+  "org.apache.spark" %% "spark-streaming" % "3.3.2"
+
+)
